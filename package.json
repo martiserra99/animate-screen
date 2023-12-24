@@ -1,6 +1,6 @@
 {
-  "version": "0.1.0",
-  "license": "MIT",
+  "version": "0.1.1",
+  "license": "GSAP License (https://gsap.com/licensing)",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
   "files": [
