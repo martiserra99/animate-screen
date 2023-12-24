@@ -1,5 +1,5 @@
 {
-  "version": "0.1.1",
+  "version": "1.0.0",
   "license": "GSAP License (https://gsap.com/licensing)",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -34,6 +34,7 @@
     "trailingComma": "es5"
   },
   "name": "animate-screen",
+  "description": "Breathtaking animations in React, made easy.",
   "author": "Marti Serra",
   "module": "dist/animate-screen.esm.js",
   "size-limit": [
@@ -46,6 +47,21 @@
       "limit": "10 KB"
     }
   ],
+  "keywords": [
+    "javascript",
+    "react",
+    "animate",
+    "animation",
+    "animations",
+    "gsap",
+    "scroll",
+    "scroll-trigger"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/martiserra99/animate-screen"
+  },
+  "homepage": "https://animate-screen-docs.vercel.app",
   "devDependencies": {
     "@size-limit/preset-small-lib": "^11.0.1",
     "@types/react": "^18.2.45",
