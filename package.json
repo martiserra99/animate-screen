@@ -1,5 +1,5 @@
 {
-  "version": "1.0.0",
+  "version": "1.0.1",
   "license": "GSAP License (https://gsap.com/licensing)",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -55,7 +55,7 @@
     "animations",
     "gsap",
     "scroll",
-    "scroll-trigger"
+    "scroll trigger"
   ],
   "repository": {
     "type": "git",
