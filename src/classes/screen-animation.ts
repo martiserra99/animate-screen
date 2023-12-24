@@ -187,7 +187,7 @@ class ScreenAnimation {
   }
 
   _getTotalDuration(): number {
-    return [...this._phases.values()].reduce(
+    return Array.from(this._phases.values()).reduce(
       (acc, phase) => acc + phase.delay + phase.duration,
       0
     );
