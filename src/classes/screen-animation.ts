@@ -24,12 +24,12 @@ class ScreenAnimation {
   #timeline: gsap.core.Timeline | null;
 
   constructor(phases: ScreenAnimationPhases, config: ScreenAnimationConfig) {
-    this.#phases = this.#setupPhases(phases); // Contains the information of the phases of the screen animation.
+    this.#phases = this._setupPhases(phases); // Contains the information of the phases of the screen animation.
     this.#config = config; // Contains the configuration of the screen animation.
     this.#timeline = null; // Contains the gsap timeline of the screen animation.
   }
 
-  #setupPhases(phases: ScreenAnimationPhases): Map<string, Phase> {
+  _setupPhases(phases: ScreenAnimationPhases): Map<string, Phase> {
     const result = new Map<string, Phase>();
     for (const [phase, config] of phases) {
       const data: Phase = { ...config, animations: [], callbacks: [] };
@@ -39,7 +39,7 @@ class ScreenAnimation {
   }
 
   getHeight(): string {
-    const duration = this.#getTotalDuration();
+    const duration = this._getTotalDuration();
     return `${duration * 100 + 100}vh`;
   }
 
@@ -93,9 +93,9 @@ class ScreenAnimation {
    */
   start(screen: HTMLElement) {
     this.#timeline = this._createTimeline(screen);
-    this.#timelineConfig(this.#timeline);
-    this.#timelineAnimation(this.#timeline);
-    this.#timelineCallbacks(this.#timeline);
+    this._timelineConfig(this.#timeline);
+    this._timelineAnimation(this.#timeline);
+    this._timelineCallbacks(this.#timeline);
   }
 
   _createTimeline(screen: HTMLElement): gsap.core.Timeline {
@@ -119,27 +119,27 @@ class ScreenAnimation {
     return timeline;
   }
 
-  #timelineConfig(timeline: gsap.core.Timeline) {
-    this.#timelineDuration(timeline);
-    this.#timelineSnap(timeline);
+  _timelineConfig(timeline: gsap.core.Timeline) {
+    this._timelineDuration(timeline);
+    this._timelineSnap(timeline);
   }
 
-  #timelineDuration(timeline: gsap.core.Timeline) {
-    timeline.set({}, {}, this.#getTotalDuration());
+  _timelineDuration(timeline: gsap.core.Timeline) {
+    timeline.set({}, {}, this._getTotalDuration());
   }
 
-  #timelineSnap(timeline: gsap.core.Timeline) {
+  _timelineSnap(timeline: gsap.core.Timeline) {
     timeline.addLabel("", 0);
     for (const [phase, config] of this.#phases) {
       if (!config.snap) continue;
-      const time = this.#getEndTimePhase(phase, config);
+      const time = this._getEndTimePhase(phase, config);
       timeline.addLabel(phase, time);
     }
   }
 
-  #timelineAnimation(timeline: gsap.core.Timeline) {
+  _timelineAnimation(timeline: gsap.core.Timeline) {
     for (const [phase, config] of this.#phases) {
-      const startPhase = this.#getStartTimePhase(phase, config);
+      const startPhase = this._getStartTimePhase(phase, config);
 
       for (const animation of config.animations) {
         const startInPhase = animation.config.start * config.duration;
@@ -159,9 +159,9 @@ class ScreenAnimation {
     }
   }
 
-  #timelineCallbacks(timeline: gsap.core.Timeline) {
+  _timelineCallbacks(timeline: gsap.core.Timeline) {
     for (const [phase, config] of this.#phases) {
-      const startPhase = this.#getStartTimePhase(phase, config);
+      const startPhase = this._getStartTimePhase(phase, config);
 
       for (const callback of config.callbacks) {
         const startInPhase = callback.time * config.duration;
@@ -177,23 +177,23 @@ class ScreenAnimation {
    * It ends the screen animation.
    */
   end() {
-    this.#destroyTimeline();
+    this._destroyTimeline();
   }
 
-  #destroyTimeline() {
+  _destroyTimeline() {
     this.#timeline!.scrollTrigger!.kill();
     this.#timeline!.kill();
     this.#timeline = null;
   }
 
-  #getTotalDuration(): number {
+  _getTotalDuration(): number {
     return [...this.#phases.values()].reduce(
       (acc, phase) => acc + phase.delay + phase.duration,
       0
     );
   }
 
-  #getStartTimePhase(name: string, config: ScreenAnimationPhaseConfig): number {
+  _getStartTimePhase(name: string, config: ScreenAnimationPhaseConfig): number {
     let startTime = config.delay;
     for (const [phase, config] of this.#phases) {
       if (phase === name) break;
@@ -202,8 +202,8 @@ class ScreenAnimation {
     return startTime;
   }
 
-  #getEndTimePhase(name: string, config: ScreenAnimationPhaseConfig): number {
-    return this.#getStartTimePhase(name, config) + config.duration;
+  _getEndTimePhase(name: string, config: ScreenAnimationPhaseConfig): number {
+    return this._getStartTimePhase(name, config) + config.duration;
   }
 }
 

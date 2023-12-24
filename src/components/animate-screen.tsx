@@ -1,10 +1,10 @@
-import { useLayoutEffect, useRef, useMemo } from "react";
+import React, { useLayoutEffect, useRef, useMemo } from 'react';
 
-import ScreenAnimationPhases from "../classes/screen-animation-phases";
-import ScreenAnimationConfig from "../types/screen-animation-config";
+import ScreenAnimationPhases from '../classes/screen-animation-phases';
+import ScreenAnimationConfig from '../types/screen-animation-config';
 
-import ScreenAnimation from "../classes/screen-animation";
-import ScreenAnimationContext from "../context/screen-animation-context";
+import ScreenAnimation from '../classes/screen-animation';
+import ScreenAnimationContext from '../context/screen-animation-context';
 
 export interface AnimateScreenProps {
   children: React.ReactNode;
@@ -16,10 +16,10 @@ export interface AnimateScreenProps {
  * It is a component that animates the screen.
  */
 function AnimateScreen({ children, phases, config }: AnimateScreenProps) {
-  const screenAnimation = useMemo(
-    () => new ScreenAnimation(phases, config),
-    [phases, config]
-  );
+  const screenAnimation = useMemo(() => new ScreenAnimation(phases, config), [
+    phases,
+    config,
+  ]);
 
   const scrollReference = useRef<HTMLDivElement>(null);
 

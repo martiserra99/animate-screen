@@ -1,9 +1,9 @@
-import { useLayoutEffect } from "react";
+import React, { useLayoutEffect } from 'react';
 
-import useScreenAnimation from "../hooks/use-screen-animation";
+import useScreenAnimation from '../hooks/use-screen-animation';
 
-import ComponentAnimationPhases from "../classes/component-animation-phases";
-import ComponentCallbacksPhases from "../classes/component-callbacks-phases";
+import ComponentAnimationPhases from '../classes/component-animation-phases';
+import ComponentCallbacksPhases from '../classes/component-callbacks-phases';
 
 type Ref = (...tags: string[]) => <T extends HTMLElement>(ref: T) => void;
 type Render = (ref: Ref) => React.ReactNode;
