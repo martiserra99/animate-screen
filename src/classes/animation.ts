@@ -2,37 +2,37 @@
  * It defines the animation of a list of elements referenced by a tag.
  */
 class Animation {
-  #tag: string;
-  #ref: HTMLElement[] = [];
-  #animate: object = {};
-  #config: { ease: string; start: number; end: number } = {
-    ease: "none",
+  _tag: string;
+  _ref: HTMLElement[] = [];
+  _animate: object = {};
+  _config: { ease: string; start: number; end: number } = {
+    ease: 'none',
     start: 0,
     end: 1,
   };
 
   constructor(tag: string) {
-    this.#tag = tag;
+    this._tag = tag;
   }
 
   get tag() {
-    return this.#tag;
+    return this._tag;
   }
 
   set ref(value) {
-    this.#ref = value;
+    this._ref = value;
   }
 
   get ref() {
-    return this.#ref;
+    return this._ref;
   }
 
   get animate() {
-    return this.#animate;
+    return this._animate;
   }
 
   get config() {
-    return this.#config;
+    return this._config;
   }
 
   /**
@@ -41,7 +41,7 @@ class Animation {
    * @returns The animation.
    */
   to(animate: object) {
-    this.#animate = animate;
+    this._animate = animate;
     return this;
   }
 
@@ -51,7 +51,7 @@ class Animation {
    * @returns The animation.
    */
   ease(value: string) {
-    this.#config.ease = value;
+    this._config.ease = value;
     return this;
   }
 
@@ -61,7 +61,7 @@ class Animation {
    * @returns The animation.
    */
   start(value: number) {
-    this.#config.start = value;
+    this._config.start = value;
     return this;
   }
 
@@ -71,7 +71,7 @@ class Animation {
    * @returns The animation.
    */
   end(value: number) {
-    this.#config.end = value;
+    this._config.end = value;
     return this;
   }
 }

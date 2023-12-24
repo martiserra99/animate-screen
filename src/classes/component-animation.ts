@@ -1,13 +1,13 @@
-import Animation from "./animation";
+import Animation from './animation';
 
 /**
  * It defines the animation of a component.
  */
 class ComponentAnimation {
-  #animations: Animation[] = [];
+  _animations: Animation[] = [];
 
   get animations() {
-    return [...this.#animations];
+    return [...this._animations];
   }
 
   /**
@@ -17,7 +17,7 @@ class ComponentAnimation {
    */
   ref(tag: string): Animation {
     const animation = new Animation(tag);
-    this.#animations.push(animation);
+    this._animations.push(animation);
     return animation;
   }
 }

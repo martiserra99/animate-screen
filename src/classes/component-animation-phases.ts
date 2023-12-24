@@ -1,10 +1,10 @@
-import ComponentAnimation from "./component-animation";
+import ComponentAnimation from './component-animation';
 
 /**
  * It defines the animation of a component in all the phases.
  */
 class ComponentAnimationPhases {
-  #phases = new Map<string, ComponentAnimation>();
+  _phases = new Map<string, ComponentAnimation>();
 
   /**
    * It sets an animation for the given phase.
@@ -12,11 +12,11 @@ class ComponentAnimationPhases {
    * @param animation The animation of the phase.
    */
   set(name: string, animation: ComponentAnimation) {
-    this.#phases.set(name, animation);
+    this._phases.set(name, animation);
   }
 
   [Symbol.iterator]() {
-    return this.#phases[Symbol.iterator]();
+    return this._phases[Symbol.iterator]();
   }
 }
 

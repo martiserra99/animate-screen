@@ -1,10 +1,10 @@
-import ScreenAnimationPhaseConfig from "../types/screen-animation-phase-config";
+import ScreenAnimationPhaseConfig from '../types/screen-animation-phase-config';
 
 /**
  * It defines the information of the phases of the screen animation.
  */
 class ScreenAnimationPhases {
-  #phases = new Map<string, ScreenAnimationPhaseConfig>();
+  _phases = new Map<string, ScreenAnimationPhaseConfig>();
 
   /**
    * It adds a phase to the screen animation.
@@ -19,11 +19,11 @@ class ScreenAnimationPhases {
     duration: number = 1,
     snap: boolean = true
   ) {
-    this.#phases.set(name, { delay, duration, snap });
+    this._phases.set(name, { delay, duration, snap });
   }
 
   [Symbol.iterator]() {
-    return this.#phases[Symbol.iterator]();
+    return this._phases[Symbol.iterator]();
   }
 }
 

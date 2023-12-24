@@ -2,7 +2,7 @@
  * It defines the callbacks of a component in all the phases.
  */
 class ComponentCallbacksPhases {
-  #phases = new Map<string, { time: number; callback: () => void }[]>();
+  _phases = new Map<string, { time: number; callback: () => void }[]>();
 
   /**
    * It adds a callback to the given phase.
@@ -11,13 +11,13 @@ class ComponentCallbacksPhases {
    * @param callback The callback to add.
    */
   add(name: string, time: number, callback: () => void) {
-    const phase = this.#phases.get(name);
-    if (phase) this.#phases.set(name, [...phase, { time, callback }]);
-    else this.#phases.set(name, [{ time, callback }]);
+    const phase = this._phases.get(name);
+    if (phase) this._phases.set(name, [...phase, { time, callback }]);
+    else this._phases.set(name, [{ time, callback }]);
   }
 
   [Symbol.iterator]() {
-    return this.#phases[Symbol.iterator]();
+    return this._phases[Symbol.iterator]();
   }
 }
 
