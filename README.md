@@ -22,7 +22,7 @@ npm install animate-screen
 
 ## Documentation
 
-Check out the documentation [here](https://animate-screen-docs.vercel.app).
+Check out the documentation [here](https://martiserra.me/animate-screen).
 
 ## License
 
