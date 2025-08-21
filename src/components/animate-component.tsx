@@ -5,7 +5,7 @@ import useScreenAnimation from '../hooks/use-screen-animation';
 import ComponentAnimationPhases from '../classes/component-animation-phases';
 import ComponentCallbacksPhases from '../classes/component-callbacks-phases';
 
-type Ref = (...tags: string[]) => <T extends HTMLElement>(ref: T) => void;
+type Ref = <T extends HTMLElement>(...tags: string[]) => React.Ref<T>;
 type Render = (ref: Ref) => React.ReactNode;
 
 interface AnimateComponentProps {
@@ -31,8 +31,8 @@ function AnimateComponent({
     return () => screenAnimation.remove(animationPhases, callbacksPhases);
   }, [screenAnimation, animationPhases, setCallbacksPhases]);
 
-  function ref(...tags: string[]): (element: HTMLElement) => void {
-    return <T extends HTMLElement>(element: T) => {
+  function ref<T extends HTMLElement>(...tags: string[]): React.Ref<T> {
+    return (element: T) => {
       for (const [, animation] of animationPhases)
         for (const refAnimations of animation.animations)
           if (tags.includes(refAnimations.tag)) refAnimations.ref.push(element);
